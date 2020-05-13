@@ -1,0 +1,45 @@
+<unit-test>
+    <artifacts>
+        <test-artifact>
+            <artifact>/HealthCareServices/src/main/synapse-config/api/HealthcareAPI.xml</artifact>
+        </test-artifact>
+        <supportive-artifacts>
+            <artifact>/UtilityDev/src/main/synapse-config/endpoints/Utility_QueryDoctor_EP.xml</artifact>
+        </supportive-artifacts>
+        <registry-resources/>
+        <connector-resources/>
+    </artifacts>
+    <test-cases>
+        <test-case name="Test01-Case">
+            <input>
+                <request-path>/healthcareapi/querydoctor/ent</request-path>
+                <request-method>GET</request-method>
+            </input>
+            <assertions>
+                <assertEquals>
+                    <actual>$body</actual>
+                    <expected><![CDATA[[
+    {
+        "name": "henry parker",
+        "hospital": "grand oak community hospital",
+        "category": "ent",
+        "availability": "9.00 a.m - 11.00 a.m",
+        "fee": 4500.0
+    },
+    {
+        "name": "abner jones",
+        "hospital": "grand oak community hospital",
+        "category": "ent",
+        "availability": "8.00 a.m - 10.00 a.m",
+        "fee": 6750.0
+    }
+]]]></expected>
+                    <message>No matching json body</message>
+                </assertEquals>
+            </assertions>
+        </test-case>
+    </test-cases>
+    <mock-services>
+        <mock-service>/HealthCareServices/test/resources/mock-services/mock1.xml</mock-service>
+    </mock-services>
+</unit-test>

@@ -1,0 +1,35 @@
+<mock-service>
+    <service-name>Utility_QueryDoctor_EP</service-name>
+    <port>9090</port>
+    <context>/healthcare</context>
+    <resources>
+        <resource>
+            <sub-context>/paediatric</sub-context>
+            <method>GET</method>
+            <request>
+                <headers>
+                    <header name="Accept" value="application/json"/>
+                </headers>
+            </request>
+            <response>
+                <status-code>200</status-code>
+                <payload><![CDATA[[
+    {
+        "name": "cailen cooper",
+        "hospital": "clemency medical center",
+        "category": "paediatric",
+        "availability": "9.00 a.m - 11.00 a.m",
+        "fee": 5500.0
+    },
+    {
+        "name": "henry foster",
+        "hospital": "willow gardens general hospital",
+        "category": "paediatric",
+        "availability": "8.00 a.m - 10.00 a.m",
+        "fee": 10000.0
+    }
+]]]></payload>
+            </response>
+        </resource>
+    </resources>
+</mock-service>
