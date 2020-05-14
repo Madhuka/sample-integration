@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'jdk8'
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    PATH=/usr/local/bin:$PATH 
+                    newman -v
+                ''' 
+                git 'https://github.com/Madhuka/sample-integration.git'
+            }
+        }
+        stage('Build-Deploy-Dependency') {
+            steps {
+                echo 'Build-Deploy-Dependency..'
+                sh '''
+                    cd 	IntegrationProjects/IntegrationEnvironment
+                    mvn clean install -Dmaven.test.skip=true
+                    mvn clean deploy -P dev
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
+        stage('Build-Deploy-Integration') {
+            steps {
+                echo 'Build-Deploy-Integration..'
+                sh '''
+                    cd IntegrationProjects/HealthCareService/
+                    mvn clean install -Dmaven.test.skip=true
+                    mvn clean deploy -P deploy -D env=dev
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Integration Automation Testing..'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    PATH=/usr/local/bin:$PATH 
+                    newman -v
+                    newman run HealthServices.postman_collection.json
+                ''' 
+            }
+        }
+        stage ('Invoke_Prod_Pipeline') {
+            steps {
+                build job: 'test21', parameters: [
+                string(name: 'param1', value: "value1")
+                ]
+            }
+        }
+    }
+}
