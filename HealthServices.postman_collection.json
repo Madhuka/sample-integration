@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "querydoctor paediatric",
+			"name": "Querydoctor -Paediatric",
 			"event": [
 				{
 					"listen": "test",
@@ -53,6 +53,217 @@
 						"healthcareapi",
 						"querydoctor",
 						"paediatric"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Querydoctor -ENT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2724193-8e71-4330-beaf-e0668f846049",
+						"exec": [
+							"pm.test(\"Response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify Feee\",function () { ",
+							"        pm.expect(jsonData[0].fee).is.to.equal(4500.0); ",
+							"    });",
+							"pm.test(\"Verify Doctor name\", function () { ",
+							"        pm.expect(jsonData[0].name).is.to.equal(\"henry parker\"); ",
+							"    });",
+							"pm.test(\"Verify Hospital\", function () { ",
+							"        pm.expect(jsonData[0].hospital).is.to.equal(\"grand oak community hospital\"); ",
+							"    });",
+							"pm.test(\"Verify Availability\", function () { ",
+							"        pm.expect(jsonData[0].availability).is.to.equal(\"9.00 a.m - 11.00 a.m\"); ",
+							"    });",
+							"pm.test(\"Verify Category as paediatric\", function () { ",
+							"        pm.expect(jsonData[0].category).is.to.equal(\"ent\"); ",
+							"        pm.expect(jsonData[1].category).is.to.equal(\"ent\"); ",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/healthcareapi/querydoctor/ent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcareapi",
+						"querydoctor",
+						"ent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Querydoctor -Cardiology",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2724193-8e71-4330-beaf-e0668f846049",
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify Feee\",function () { ",
+							"        pm.expect(jsonData[0].fee).is.to.equal(4000.0); ",
+							"    });",
+							"pm.test(\"Verify Doctor name\", function () { ",
+							"        pm.expect(jsonData[0].name).is.to.equal(\"emeline fulton\"); ",
+							"    });",
+							"pm.test(\"Verify Hospital\", function () { ",
+							"        pm.expect(jsonData[0].hospital).is.to.equal(\"pine valley community hospital\"); ",
+							"    });",
+							"pm.test(\"Verify Availability\", function () { ",
+							"        pm.expect(jsonData[0].availability).is.to.equal(\"8.00 a.m - 10.00 a.m\");",
+							"    });    ",
+							"pm.test(\"Verify category as cardiology\", function () { ",
+							"        pm.expect(jsonData[0].category).is.to.equal(\"cardiology\"); ",
+							"        pm.expect(jsonData[1].category).is.to.equal(\"cardiology\"); ",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/healthcareapi/querydoctor/cardiology",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcareapi",
+						"querydoctor",
+						"cardiology"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Querydoctor -Gynaecology",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2724193-8e71-4330-beaf-e0668f846049",
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify Feee\",function () { ",
+							"        pm.expect(jsonData[0].fee).is.to.equal(11000.0); ",
+							"    });",
+							"pm.test(\"Verify Doctor name\", function () { ",
+							"        pm.expect(jsonData[0].name).is.to.equal(\"abner jones\"); ",
+							"    });",
+							"pm.test(\"Verify Hospital\", function () { ",
+							"        pm.expect(jsonData[0].hospital).is.to.equal(\"grand oak community hospital\"); ",
+							"    });",
+							"pm.test(\"Verify Availability\", function () { ",
+							"        pm.expect(jsonData[0].availability).is.to.equal(\"8.00 a.m - 10.00 a.m\");",
+							"    });    ",
+							"pm.test(\"Verify category as gynaecology\", function () { ",
+							"        pm.expect(jsonData[0].category).is.to.equal(\"gynaecology\"); ",
+							"        pm.expect(jsonData[1].category).is.to.equal(\"gynaecology\"); ",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/healthcareapi/querydoctor/gynaecology",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcareapi",
+						"querydoctor",
+						"gynaecology"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Querydoctor -Dermatologist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2724193-8e71-4330-beaf-e0668f846049",
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify status\",function () { ",
+							"        pm.expect(jsonData.status).is.to.equal(\"Could not find any entry for the requested Category\"); ",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/healthcareapi/querydoctor/dermatologist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcareapi",
+						"querydoctor",
+						"dermatologist"
 					]
 				}
 			},
