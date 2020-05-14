@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "11f11ac3-a328-4a1b-9bd9-c358efedd0e9",
+		"name": "HealthServices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "querydoctor paediatric",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2724193-8e71-4330-beaf-e0668f846049",
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     // assert that the status code is 200",
+							"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants",
+							"     // assert that the response has a valid JSON body",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed",
+							"});",
+							"var jsonData = pm.response.json(); ",
+							"pm.test(\"Verify Feee\",function () { ",
+							"        pm.expect(jsonData[0].fee).is.to.equal(5500.0); ",
+							"    });",
+							"pm.test(\"Verify Doctor name\", function () { ",
+							"        pm.expect(jsonData[0].name).is.to.equal(\"cailen cooper\"); ",
+							"    });",
+							"pm.test(\"Verify Hospital\", function () { ",
+							"        pm.expect(jsonData[0].hospital).is.to.equal(\"clemency medical center\"); ",
+							"    });",
+							"pm.test(\"Verify category as paediatric\", function () { ",
+							"        pm.expect(jsonData[0].category).is.to.equal(\"paediatric\"); ",
+							"        pm.expect(jsonData[1].category).is.to.equal(\"paediatric\"); ",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8280/healthcareapi/querydoctor/paediatric",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8280",
+					"path": [
+						"healthcareapi",
+						"querydoctor",
+						"paediatric"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
