@@ -1,10 +1,13 @@
 environments:
-  - name: dev
-    endpoints:
-      production: 'https://localhost-dev:9443/'
-      sandbox: 'https://localhost-sand-dev:9443/'
-  - name: prod
-    endpoints:
-      production: 'https://localhost-prod:9443/'
-      sandbox: 'https://localhost-sand-prod:9443/'
-
+- name: dev
+  endpoints:
+    production:
+      url: 'http://dev.wso2.com'
+    sandbox:
+      url: 'http://dev.sandbox.wso2.com'
+- name: prod
+  endpoints:
+    production:
+      url: 'http://prod.wso2.com'
+    sandbox:
+      url: 'http://prod.sandbox.wso2.com'
