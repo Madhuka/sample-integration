@@ -1,10 +1,10 @@
 environments:
   - name: dev
     endpoints:
-      production: https://localhost-dev:9443/
-      sandbox: https://localhost-sand-dev:9443/
+      production: 'https://localhost-dev:9443/'
+      sandbox: 'https://localhost-sand-dev:9443/'
   - name: prod
     endpoints:
-      production: https://localhost-prod:9443/
-      sandbox: https://localhost-sand-prod:9443/
+      production: 'https://localhost-prod:9443/'
+      sandbox: 'https://localhost-sand-prod:9443/'
 
