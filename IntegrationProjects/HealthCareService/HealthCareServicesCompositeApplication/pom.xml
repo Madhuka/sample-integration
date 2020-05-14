@@ -99,9 +99,9 @@
               <trustStorePath>${basedir}/src/main/resources/security/wso2carbon.jks</trustStorePath>
               <trustStorePassword>wso2carbon</trustStorePassword>
               <trustStoreType>JKS</trustStoreType>
-              <serverUrl>https://localhost:9443</serverUrl>
-              <userName>admin</userName>
-              <password>admin</password>
+              <serverUrl>${serverUrl}</serverUrl>
+              <userName>${userName}</userName>
+              <password>${password}</password>
               <operation>deploy</operation>
             </CarbonServer>
           </carbonServers>
@@ -109,4 +109,49 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+    <profile>
+      <id>local</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <property>
+          <name>env</name>
+          <value>local</value>
+        </property>
+      </activation>
+      <properties>
+        <serverUrl>https://localhost:9443</serverUrl>
+        <password>admin</password>
+        <userName>admin</userName>
+      </properties>
+    </profile>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>dev</value>
+        </property>
+      </activation>
+      <properties>
+        <serverUrl>https://192.168.1.139:9443</serverUrl>
+        <password>admin</password>
+        <userName>admin</userName>
+      </properties>
+    </profile>
+    <profile>
+      <id>qa1</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>prod</value>
+        </property>
+      </activation>
+      <properties>
+        <serverUrl>https://192.168.1.139:9444</serverUrl>
+        <password>admin</password>
+        <userName>admin</userName>
+      </properties>
+    </profile>
+  </profiles>
 </project>
