@@ -11,7 +11,9 @@ pipeline {
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                     PATH=/usr/local/bin:$PATH
+                    PATH=/Users/madhka/Dev/wso2/products/apimcli:$PATH
                     newman -v
+                    apimcli version
                 '''
                 git 'https://github.com/Madhuka/sample-integration.git'
             }
@@ -20,23 +22,19 @@ pipeline {
             steps {
                 echo 'Build-Deploy-Dependency..'
                 sh '''
-                    cd     IntegrationProjects/IntegrationEnvironment
-                    mvn clean install -Dmaven.test.skip=true
-                    mvn clean deploy -P prod
+                    git checkout apim
+                    git pull
+                    cd APIM
+                    echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
+                    PATH=/usr/local/bin:$PATH
+                    PATH=/Users/madhka/Dev/wso2/products/apimcli:$PATH
+                    apimcli version
+                    apimcli login prod -u admin -p admin -k
+                    apimcli import-api --file ./PetstoreAPI --environment prod -k
                 '''
             }
         }
-        stage('Build-Deploy-Integration') {
-            steps {
-                echo 'Build-Deploy-Integration..'
-                sh '''
-                    cd IntegrationProjects/HealthCareService/
-                    mvn clean install -Dmaven.test.skip=true
-                    mvn clean deploy -P deploy -D env=prod
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-            }
-        }
+        
     }
 }

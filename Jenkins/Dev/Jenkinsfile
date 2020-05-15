@@ -52,8 +52,8 @@ pipeline {
         }
         stage ('Invoke_Prod_Pipeline') {
             steps {
-                build job: 'test21', parameters: [
-                string(name: 'param1', value: "value1")
+                build job: 'HealthCare Service Integration - PROD', parameters: [
+                string(name: 'param1', value: "pass")
                 ]
             }
         }
