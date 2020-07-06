@@ -6,7 +6,7 @@ description: 'This is a sample server Petstore server.  You can find out more ab
   Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For
   this sample, you can use the api key `special-key` to test the authorization filters.'
 type: HTTP
-context: /v2/1.0.0
+context: /v1/1.0.0
 thumbnailUrl: /registry/resource/_system/governance/apimgt/applicationdata/icons/admin/Petstore/1.0.5/icon
 contextTemplate: /v2/{version}
 tags:
