@@ -6,6 +6,12 @@ environments:
                     url: 'http://dev.wso2.com'
                 sandbox:
                     url: 'http://dev.sandbox.wso2.com'
+            security:
+                    production:
+                          enabled: true
+                          type: basic
+                          username: admin
+                          password: admin
            
     - name: prod
       configs:
