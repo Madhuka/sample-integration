@@ -11,9 +11,9 @@ pipeline {
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                     PATH=/usr/local/bin:$PATH
-                    PATH=/Users/madhka/Dev/wso2/products/apimcli:$PATH
+                    PATH=/Users/madhka/Dev/WSO2/apictl:$PATH
                     newman -v
-                    apimcli version
+                    apictl version
                 '''
                 git 'https://github.com/Madhuka/sample-integration.git'
             }
@@ -22,16 +22,16 @@ pipeline {
             steps {
                 echo 'Build-Deploy-Dependency..'
                 sh '''
-                    git checkout apim
+                    git checkout apim4
                     git pull
                     cd APIM
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                     PATH=/usr/local/bin:$PATH
-                    PATH=/Users/madhka/Dev/wso2/products/apimcli:$PATH
-                    apimcli version
-                    apimcli login prod -u admin -p admin -k
-                    apimcli import-api --file ./PetstoreAPI --environment prod -k
+                    PATH=/Users/madhka/Dev/WSO2/apictl:$PATH
+                    apictl version
+                    apictl login prod -u admin -p admin -k
+                    apictl import api -f ./PetstoreAPI -e prod --params PetstoreAPI/api_params.yaml -k
                 '''
             }
         }
